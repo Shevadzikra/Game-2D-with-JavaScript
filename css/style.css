@@ -15,6 +15,6 @@
     max-height: 100%; // membuat ukuran canvas tetap 100$ meski ukuran halaman diperbesar / kecil
 }
 
-#layer1, #layer2, #layer3, #layer4, {
+#layer1, #layer2, #layer3, #layer4 {
     display: none;
 }

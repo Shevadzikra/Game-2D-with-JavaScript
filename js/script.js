@@ -280,6 +280,7 @@ window.addEventListener('load', function() {
             this.enemies.forEach(enemy => {
                 enemy.draw(context);
             });
+            this.background.layer4.draw(context)
         }
 
         addEnemy() {
