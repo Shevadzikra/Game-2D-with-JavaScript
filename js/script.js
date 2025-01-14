@@ -16,6 +16,8 @@ window.addEventListener('load', function() {
                     this.game.keys.push(e.key);
                 } else if (e.key === 'z') {
                     this.game.player.shootTop(); // tetapkan key untuk menembak
+                } else if (e.key === 'd') {
+                    this.game.debug = !this.game.debug; // tetapkan key untuk menembak
                 }
             });
             window.addEventListener('keyup', e => {
@@ -87,8 +89,7 @@ window.addEventListener('load', function() {
         }
  
         draw(context) {
-            context.fillStyle = 'black';
-            context.fillRect(this.x, this.y, this.width, this.height);
+            if (this.game.debug) context.strokeRect(this.x, this.y, this.width, this.height);
             context.drawImage(this.image, this.frameX * this.width, this.frameY * this.height, this.width, this.height, this.x, this.y, this.width, this.height);
             this.projectiles.forEach(projectile => {
                 projectile.draw(context);
@@ -246,12 +247,14 @@ window.addEventListener('load', function() {
             this.gameTime = 0;
             this.timeLimit = 5000; // 1000 = 1 detik
             this.speed = 1;
+            this.debug = true;
         }
 
         update(deltaTime) {
             if (!this.gameOver) this.gameTime += deltaTime;
             if (this.gameTime > this.timeLimit) this.gameOver = true;
             this.background.update();
+            this.background.layer4.update();
             this.player.update();
             if (this.ammoTimer > this.ammoInterval) {
                 if (this.ammo < this.maxAmmo) this.ammo++;
